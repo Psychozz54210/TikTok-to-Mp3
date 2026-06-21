@@ -1,9 +1,4 @@
 import { NextResponse } from "next/server";
-import { readFileSync, unlinkSync } from "fs";
-import { join } from "path";
-import { tmpdir } from "os";
-import { v4 as uuidv4 } from "uuid";
-import youtubedl from "youtube-dl-exec";
 
 export async function POST(request) {
   try {
@@ -12,54 +7,38 @@ export async function POST(request) {
       return NextResponse.json({ error: "URL is required" }, { status: 400 });
     }
 
-    const videoId = uuidv4();
-    const outputPath = join(tmpdir(), `${videoId}.%(ext)s`);
+    // Call TikWM API to get the media data
+    const apiUrl = `https://www.tikwm.com/api/?url=${encodeURIComponent(url)}`;
+    const apiResponse = await fetch(apiUrl);
+    const data = await apiResponse.json();
 
-    // Download raw media using yt-dlp WITHOUT conversion
-    // We request 'best' format because TikTok often doesn't have an audio-only stream
-    await youtubedl(url, {
-      format: "best",
-      output: outputPath,
-      noWarnings: true,
-      noCheckCertificates: true,
-      addHeader: [
-        'referer:tiktok.com',
-        'user-agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-      ]
-    });
-
-    // We don't know the exact extension yt-dlp chose, so we list the temp dir
-    // to find the downloaded file.
-    const fs = require('fs');
-    const files = fs.readdirSync(tmpdir());
-    const downloadedFile = files.find(f => f.startsWith(videoId));
-
-    if (!downloadedFile) {
-      throw new Error("Downloaded file not found.");
+    if (data.code !== 0 || !data.data || !data.data.music_info) {
+      return NextResponse.json(
+        { error: "Could not find audio for this TikTok." },
+        { status: 404 }
+      );
     }
 
-    const actualFile = join(tmpdir(), downloadedFile);
-    
-    let fileBuffer;
-    try {
-      fileBuffer = readFileSync(actualFile);
-    } catch (err) {
-      console.error("Error reading extracted file:", err);
-      return NextResponse.json({ error: "Could not read the downloaded file." }, { status: 500 });
-    }
-    
-    // Clean up temp file
-    try {
-      unlinkSync(actualFile);
-    } catch (e) {
-      console.error("Cleanup error:", e);
+    // This is the direct URL to the MP3 file hosted on TikTok's CDN
+    const audioUrl = data.data.music_info.play;
+
+    // We fetch the actual MP3 file from the CDN
+    const audioRes = await fetch(audioUrl);
+    if (!audioRes.ok) {
+      throw new Error("Failed to fetch audio stream");
     }
 
-    return new NextResponse(fileBuffer, {
+    // Stream it directly to the user
+    const buffer = await audioRes.arrayBuffer();
+
+    // Create a safe filename
+    const videoId = data.data.id || Date.now().toString();
+
+    return new NextResponse(buffer, {
       status: 200,
       headers: {
-        "Content-Type": "application/octet-stream",
-        "Content-Disposition": `attachment; filename="raw-${videoId.substring(0, 8)}.raw"`,
+        "Content-Type": "audio/mpeg",
+        "Content-Disposition": `attachment; filename="audiotok-${videoId}.mp3"`,
       },
     });
   } catch (error) {
