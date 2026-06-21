@@ -26,4 +26,4 @@ Le site fonctionne directement depuis votre navigateur internet, que vous soyez 
 - iPhone (Safari, Chrome)
 - Android
 
-*Aucune installation d'application tierce n'est requise !*
+https://tik-tok-to-mp3.vercel.app/
