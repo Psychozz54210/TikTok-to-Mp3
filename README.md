@@ -1,36 +1,26 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# TikTok to MP3 🎵
 
-## Getting Started
+Une application web moderne, rapide et élégante pour extraire la piste audio (au format MP3) de n'importe quelle vidéo TikTok.
 
-First, run the development server:
+## ✨ Fonctionnalités
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Design Premium** : Interface épurée avec effet Glassmorphism et mode sombre (Dark Mode).
+- **Architecture Hybride (Client-Side Processing)** : Utilise la puissance du navigateur de l'utilisateur (via WebAssembly) pour la conversion audio. Le serveur n'est utilisé que comme proxy, ce qui garantit des performances optimales et des coûts serveurs très faibles.
+- **Conversion Haute Qualité** : Extraction de l'audio natif sans perte de qualité avec le puissant moteur `yt-dlp` et `ffmpeg.wasm`.
+- **Aucun stockage de données** : Respect de la vie privée. Les vidéos transitent uniquement en mémoire vive (RAM) et aucun fichier n'est conservé.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Technologies Utilisées
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **Framework** : [Next.js](https://nextjs.org/) (App Router)
+- **Frontend** : React, CSS Vanilla (Polices : Inter & Outfit)
+- **Traitement Backend** : [yt-dlp](https://github.com/yt-dlp/yt-dlp) (via `youtube-dl-exec`)
+- **Conversion Audio** : [FFmpeg WebAssembly](https://ffmpegwasm.netlify.app/) (`@ffmpeg/ffmpeg`)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Installation & Lancement (Local)
 
-## Learn More
+Pour faire tourner le projet sur votre propre ordinateur :
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Clonez ce dépôt :
+   ```bash
+   git clone https://github.com/Psychozz54210/tiktok-to-mp3.git
+   cd tiktok-to-mp3
