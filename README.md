@@ -1,20 +1,29 @@
-# TikTok to MP3 🎵
+# 🎵 TikTok to MP3
 
-Une application web moderne, rapide et élégante pour extraire la piste audio (au format MP3) de n'importe quelle vidéo TikTok.
+Bienvenue sur **TikTok to MP3** ! Une plateforme simple, gratuite et sans publicité pour transformer vos vidéos TikTok préférées en fichiers audio de haute qualité.
 
-## ✨ Fonctionnalités
+## ✨ Pourquoi utiliser TikTok to MP3 ?
 
-- **Design Premium** : Interface épurée avec effet Glassmorphism et mode sombre (Dark Mode).
-- **Architecture Hybride (Client-Side Processing)** : Utilise la puissance du navigateur de l'utilisateur (via WebAssembly) pour la conversion audio. Le serveur n'est utilisé que comme proxy, ce qui garantit des performances optimales et des coûts serveurs très faibles.
-- **Conversion Haute Qualité** : Extraction de l'audio natif sans perte de qualité avec le puissant moteur `yt-dlp` et `ffmpeg.wasm`.
-- **Aucun stockage de données** : Respect de la vie privée. Les vidéos transitent uniquement en mémoire vive (RAM) et aucun fichier n'est conservé.
+- **Extrêmement Rapide** : Obtenez votre fichier MP3 en quelques secondes seulement.
+- **Aucune Inscription** : Pas besoin de créer un compte, copiez simplement votre lien et c'est parti.
+- **Haute Qualité** : Nous extrayons le son original de la vidéo sans aucune perte de qualité (jusqu'à 320 kbps).
+- **100% Sécurisé et Privé** : Nous ne sauvegardons aucune de vos données et ne gardons aucune trace des vidéos que vous téléchargez. Le processus se passe de manière instantanée.
+- **Design Moderne** : Une interface agréable, fluide et sombre, pensée pour ne pas vous fatiguer les yeux.
 
-## 🛠️ Technologies Utilisées
+## 🚀 Comment ça marche ?
 
-- **Framework** : [Next.js](https://nextjs.org/) (App Router)
-- **Frontend** : React, CSS Vanilla (Polices : Inter & Outfit)
-- **Traitement Backend** : [yt-dlp](https://github.com/yt-dlp/yt-dlp) (via `youtube-dl-exec`)
-- **Conversion Audio** : [FFmpeg WebAssembly](https://ffmpegwasm.netlify.app/) (`@ffmpeg/ffmpeg`)
+C'est très simple :
+1. **Ouvrez TikTok** (sur l'application ou sur le site web) et trouvez la vidéo qui contient le son que vous voulez.
+2. Cliquez sur le bouton "Partager", puis sur **"Copier le lien"**.
+3. **Collez ce lien** dans la barre principale de notre site.
+4. Cliquez sur **"Extract Audio"**.
+5. Une fois le traitement terminé, cliquez sur **"Download MP3"** pour enregistrer la musique directement sur votre appareil !
 
+## 📱 Appareils Compatibles
 
+Le site fonctionne directement depuis votre navigateur internet, que vous soyez sur :
+- Ordinateur (Windows, Mac, Linux)
+- iPhone (Safari, Chrome)
+- Android
 
+*Aucune installation d'application tierce n'est requise !*
