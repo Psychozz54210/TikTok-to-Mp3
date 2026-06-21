@@ -16,11 +16,5 @@ Une application web moderne, rapide et élégante pour extraire la piste audio (
 - **Traitement Backend** : [yt-dlp](https://github.com/yt-dlp/yt-dlp) (via `youtube-dl-exec`)
 - **Conversion Audio** : [FFmpeg WebAssembly](https://ffmpegwasm.netlify.app/) (`@ffmpeg/ffmpeg`)
 
-## 🚀 Installation & Lancement (Local)
 
-Pour faire tourner le projet sur votre propre ordinateur :
 
-1. Clonez ce dépôt :
-   ```bash
-   git clone https://github.com/Psychozz54210/tiktok-to-mp3.git
-   cd tiktok-to-mp3
